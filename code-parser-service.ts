@@ -11,6 +11,61 @@ export interface ASTMetrics {
   problematicFunctions: string[];
   problematicClasses: string[];
 }
+export interface ASTMetrics {
+  functionCount: number;
+  maxCyclomaticComplexity: number;
+  averageFunctionLength: number;
+  maxNestingDepth: number;
+  deepNestingCount: number;
+  classCount: number;
+  maxMethodsPerClass: number;
+  problematicFunctions: string[];
+  problematicClasses: string[];
+}
+export interface ASTMetrics {
+  functionCount: number;
+  maxCyclomaticComplexity: number;
+  averageFunctionLength: number;
+  maxNestingDepth: number;
+  deepNestingCount: number;
+  classCount: number;
+  maxMethodsPerClass: number;
+  problematicFunctions: string[];
+  problematicClasses: string[];
+}
+export interface ASTMetrics {
+  functionCount: number;
+  maxCyclomaticComplexity: number;
+  averageFunctionLength: number;
+  maxNestingDepth: number;
+  deepNestingCount: number;
+  classCount: number;
+  maxMethodsPerClass: number;
+  problematicFunctions: string[];
+  problematicClasses: string[];
+}
+export interface ASTMetrics {
+  functionCount: number;
+  maxCyclomaticComplexity: number;
+  averageFunctionLength: number;
+  maxNestingDepth: number;
+  deepNestingCount: number;
+  classCount: number;
+  maxMethodsPerClass: number;
+  problematicFunctions: string[];
+  problematicClasses: string[];
+}
+export interface ASTMetrics {
+  functionCount: number;
+  maxCyclomaticComplexity: number;
+  averageFunctionLength: number;
+  maxNestingDepth: number;
+  deepNestingCount: number;
+  classCount: number;
+  maxMethodsPerClass: number;
+  problematicFunctions: string[];
+  problematicClasses: string[];
+}
 
 /**
  * Parses the JavaScript code string using Espree and returns the AST.
