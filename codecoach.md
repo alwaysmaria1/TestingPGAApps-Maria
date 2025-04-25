@@ -4,52 +4,75 @@
  
  ---
  
- ## 1. Project Overview  
- **CodeCoach** is a lightweight service that  
- - 🧠 Ingests structured documentation into a Neo4j graph  
- - 💬 Powers LLM‑backed Q&A on architecture, style, and workflows  
- - 🔄 Supports continuous updates via “episodes” (e.g. codecoach.md entries)
- 
- ---
- 
- ## 2. Architecture Snapshot  
- [ GitHub App ] → [ CodeCoach Ingest Service ] → [ Neo4j Graph Database ] ↓ [ LLM Assistant ]
- 
- yaml
- Copy
- Edit
- - **Ingest** runs on Python 3.13+, uses Graphiti for chunking + entity extraction.  
- - **Neo4j** holds the doc graph: nodes = concepts, edges = relationships.  
- - **Assistant** queries the graph to ground LLM replies.
- 
- ---
- 
- ## 3. File Structure  
- / ├── demo_ingest.py # main ingest script ├── codecoach.md # this file ├── requirements.txt # pip dependencies └── README.md # high‑level project intro
- 
- markdown
- Copy
- Edit
- 
- ---
- 
- ## 4. Coding Standards  
- 
- - **Python**  
-   - Use **Black** for formatting (88‑char line length).  
-   - Type hint everything; run `mypy .` before PR.  
- - **Markdown**  
-   - Headings use ATX style (`## Section Title`).  
-   - Wrap lines at ~80 columns.  
- - **Git**  
-   - Commit messages follow Conventional Commits:  
-     - `feat: …`, `fix: …`, `docs: …`, `refactor: …`
- 
- ---
- 
- ## 5. Ingesting New Episodes  
- 
- 1. Add or update a section in `codecoach.md`.  
- 2. Run:
-    ```bash
-    python3 demo_ingest.py <owner/repo> codecoach.md
+ ## 1. Project Overview
+
+**DesignSage** is a design ops tool that
+
+-   🎨 Parses Figma tokens + design system docs into a structured store
+    
+-   🤖 Offers AI‑backed suggestions for consistency and usability
+    
+-   🔁 Keeps up with evolving components via versioned snapshots
+    
+
+----------
+
+## 2. Architecture Snapshot
+
+[ Figma Plugin ] → [ DesignSage Sync Service ] → [ Postgres Metadata Store ] ↓ [ AI Advisor ]
+
+yaml Copy Edit
+
+-   **Sync** runs on Node.js 20+, uses Cheerio for parsing + metadata extraction.
+    
+-   **Postgres** stores component metadata: tables = components, props, styles.
+    
+-   **Advisor** reads this data to guide design decisions with context-aware prompts.
+    
+
+----------
+
+## 3. File Structure
+
+/ ├── sync_designs.ts # main sync script ├── designsage.md # this file ├── package.json # npm dependencies └── README.md # project overview + setup
+
+markdown  
+Copy  
+Edit
+
+----------
+
+## 4. Coding Standards
+
+-   **TypeScript**
+    
+    -   Use **Prettier** with default settings.
+        
+    -   Enforce strict mode; use interfaces/types generously.
+        
+-   **Markdown**
+    
+    -   Use ATX headings (`## Title`).
+        
+    -   Soft wrap lines at ~100 characters.
+        
+-   **Git**
+    
+    -   Use Conventional Commits:
+        
+        -   `chore: …`, `feat: …`, `fix: …`, `style: …`
+            
+
+----------
+
+## 5. Syncing New Snapshots
+
+1.  Update the latest design tokens or Figma notes.
+    
+2.  Run:
+    
+    bash
+    
+    CopyEdit
+    
+    `node sync_designs.ts <team/project> designsage.md`
