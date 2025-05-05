@@ -1,43 +1,65 @@
-function todo_manager(list, TYPE) {
-  // Inconsistent naming convention (mixed camelCase and snake_case)
-  let todoList = [];
-  let completed_items = [];
+/**
+ * Manages todo list items by priority
+ * @param {Array} items - Array of todo items
+ * @param {number} priorityType - Priority type (1: high, 2: medium, 3: low)
+ * @returns {Object} Categorized todo lists
+ */
+function manageTodoList(items, priorityType) {
+  // Constants definition
+  const MAX_ITEMS = 10;
+  const PRIORITY = {
+    HIGH: 1,
+    MEDIUM: 2,
+    LOW: 3,
+  };
 
-  // No type checking + Magic numver
-  if (list.length > 10) {
-    console.log("Error: Too many items");
+  // Input validation
+  if (!Array.isArray(items)) {
+    console.error("Valid array required");
     return null;
   }
 
-  // Duplicate code and long loop
-  for (var i = 0; i < list.length; i++) {
-    // Use of == causing potential type issues
-    if (list[i].done == true) {
-      completed_items.push(list[i]);
-    } else {
-      // Magic numbers and nested conditionals
-      if (TYPE == 1) {
-        list[i].priority = "high";
-      } else if (TYPE == 2) {
-        list[i].priority = "medium";
-      } else {
-        list[i].priority = "low";
+  if (items.length > MAX_ITEMS) {
+    console.error(`Maximum of ${MAX_ITEMS} items allowed`);
+    return null;
+  }
+
+  // Todo filtering
+  const todoItems = [];
+  const completedItems = items.filter((item) => {
+    const isDone = item.done === true;
+    if (!isDone) {
+      // Set priority
+      switch (priorityType) {
+        case PRIORITY.HIGH:
+          item.priority = "high";
+          break;
+        case PRIORITY.MEDIUM:
+          item.priority = "medium";
+          break;
+        default:
+          item.priority = "low";
       }
-      todoList.push(list[i]);
+      todoItems.push(item);
     }
-  }
+    return isDone;
+  });
 
-  // Unnecessary duplicate logic
-  for (var j = 0; j < todoList.length; j++) {
-    console.log("Todo: " + todoList[j].text);
-  }
-
-  for (var k = 0; k < completed_items.length; k++) {
-    console.log("Completed: " + completed_items[k].text);
-  }
+  // Result logging (separated function)
+  logItems("Todo", todoItems);
+  logItems("Completed", completedItems);
 
   return {
-    todos: todoList,
-    completed: completed_items,
+    todos: todoItems,
+    completed: completedItems,
   };
+}
+
+/**
+ * Helper function to log items
+ */
+function logItems(label, items) {
+  items.forEach((item) => {
+    console.log(`${label}: ${item.text}`);
+  });
 }
