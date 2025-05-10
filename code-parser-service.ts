@@ -1,24 +1,4 @@
-import * as espree from "espree";
 
-export interface ASTMetrics {
-  functionCount: number;
-  maxCyclomaticComplexity: number;
-  averageFunctionLength: number;
-  maxNestingDepth: number;
-  deepNestingCount: number;
-  classCount: number;
-  maxMethodsPerClass: number;
-  problematicFunctions: string[];
-  problematicClasses: string[];
-}
-
-/**
- * Parses the JavaScript code string using Espree and returns the AST.
- * @param code - The full source code of a file
- * @returns AST
- */
-export function parseCode(code: string) {
-  try {
     const ast = espree.parse(code, {
       ecmaVersion: "latest",
       sourceType: "module",
